@@ -11,5 +11,12 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def create
+    post = Post.new
+    post.update(params.require(:post).permit(:title, :description))
+    post.save
+    redirect_to post_path(post)
+  end
+
   # add create method here
 end
